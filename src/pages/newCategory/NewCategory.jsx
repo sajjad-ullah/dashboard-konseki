@@ -27,15 +27,7 @@ export default function NewUser() {
           <label>Password</label>
           <input type="password" placeholder="password" />
         </div> */}
-        <div className="newUserItem">
-          <MultiImageInput
-            images={imagePath}
-            setImages={setImagePath}
-            max={1}
-            cropConfig={{ crop, ruleOfThirds: true }}
-
-          />
-        </div>
+      
         <button className="newUserButton">Add</button>
       </form>
     </div>

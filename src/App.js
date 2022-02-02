@@ -8,9 +8,11 @@ import Home from "./pages/Categories/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
-import NewUser from "./pages/newCategory/NewCategory";
+import NewCategory from "./pages/newCategory/NewCategory";
 import Product from "./pages/product/Product";
 import Login from "./pages/Login/Login";
+import Payment from "./pages/Payment/payment";
+import Contact from "./pages/ContactMsgs/messages";
 import NewProduct from "./pages/newProduct/NewProduct";
 import './styles/app.scss';
 
@@ -18,6 +20,7 @@ function App() {
   const [locale, setLocale] = useState('en');
 
   const [rtl, setRtl] = useState(false);
+  const [show, setShow] = useState(true);
   const [collapsed, setCollapsed] = useState(false);
   const [image, setImage] = useState(true);
   const [toggled, setToggled] = useState(false);
@@ -41,41 +44,84 @@ function App() {
 
   return (
     <Router>
-      <Topbar />
+      {/* <Topbar /> */}
       <IntlProvider locale={locale} messages={messages[locale]}>
         <div className="container">
-          <Sidebar
-            image={image}
-            collapsed={collapsed}
-            rtl={rtl}
-            toggled={toggled}
-            handleToggleSidebar={handleToggleSidebar} />
-          <Switch>
-            <Route exact path="/">
-              <Home 
-              toggled={toggled}
+          {show ? (
+            <Sidebar
+              image={image}
               collapsed={collapsed}
               rtl={rtl}
+              toggled={toggled}
+              setCollapsed={setCollapsed}
               handleToggleSidebar={handleToggleSidebar}
-              handleCollapsedChange={handleCollapsedChange}
-              handleRtlChange={handleRtlChange}
-              handleImageChange={handleImageChange}/>
+              handleCollapsedChange={handleCollapsedChange} />
+
+          ) : ""}
+
+          <Switch>
+            <Route exact path="/">
+              <Login
+                show={show}
+                setShow={setShow} />
             </Route>
-          
-            <Route exact path="/users">
-              <UserList 
+
+            <Route exact path="/home">
+              <Home
                 toggled={toggled}
                 collapsed={collapsed}
                 rtl={rtl}
                 handleToggleSidebar={handleToggleSidebar}
                 handleCollapsedChange={handleCollapsedChange}
                 handleRtlChange={handleRtlChange}
-                handleImageChange={handleImageChange}/>
+                handleImageChange={handleImageChange} />
             </Route>
-          
-            <Route path="/login">
-              <Login />
+
+            <Route exact path="/users">
+              <UserList
+                toggled={toggled}
+                collapsed={collapsed}
+                rtl={rtl}
+                handleToggleSidebar={handleToggleSidebar}
+                handleCollapsedChange={handleCollapsedChange}
+                handleRtlChange={handleRtlChange}
+                handleImageChange={handleImageChange} />
             </Route>
+
+            <Route exact path="/payment">
+              <Payment
+                toggled={toggled}
+                collapsed={collapsed}
+                rtl={rtl}
+                handleToggleSidebar={handleToggleSidebar}
+                handleCollapsedChange={handleCollapsedChange}
+                handleRtlChange={handleRtlChange}
+                handleImageChange={handleImageChange} />
+            </Route>
+
+            <Route exact path="/messages">
+              <Contact
+                toggled={toggled}
+                collapsed={collapsed}
+                rtl={rtl}
+                handleToggleSidebar={handleToggleSidebar}
+                handleCollapsedChange={handleCollapsedChange}
+                handleRtlChange={handleRtlChange}
+                handleImageChange={handleImageChange} />
+            </Route>
+
+            <Route exact path="/newCate">
+              <NewCategory
+                toggled={toggled}
+                collapsed={collapsed}
+                rtl={rtl}
+                handleToggleSidebar={handleToggleSidebar}
+                handleCollapsedChange={handleCollapsedChange}
+                handleRtlChange={handleRtlChange}
+                handleImageChange={handleImageChange} />
+            </Route>
+
+
           </Switch>
         </div>
       </IntlProvider>

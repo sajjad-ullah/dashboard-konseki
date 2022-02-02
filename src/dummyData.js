@@ -64,6 +64,23 @@ export const userData = [
     },
   ];
 
+  export const messages = [
+    {
+      id: 1,
+      sendername: "Jonas",
+      senderemail: "jonas@gmail.com",
+      message:"Hello how are you?",
+      createdAt:"07:10:89"
+    },
+    {
+      id: 2,
+      sendername: "Danish",
+      senderemail: "danishAli@gmail.com",
+      message:"What?",
+      createdAt:"10:02:97"
+    },
+  ];
+
   export const userRows = [
     {
       id: 1,

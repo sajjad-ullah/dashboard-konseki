@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { FaBars } from 'react-icons/fa'
 import { BsListTask } from 'react-icons/bs'
+import { TiDeleteOutline } from 'react-icons/ti';
+
 import MultiImageInput from 'react-multiple-image-input';
 import image1 from '../../assests/illustration1.png'
 
@@ -70,7 +72,7 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                     <FaBars />
                 </div>
                 <h1 className="userTitle">Categories</h1>
-                <Link to="/newUser">
+                <Link to="/newCate">
                     <button className="userAddButton">Add</button>
                 </Link>
             </div>
@@ -80,14 +82,24 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                         <h3>All Categories</h3>
                         {categories.map((item, key) => (
 
-                            <div className="category-container" onClick={() => {
-                                setSelected(item)
-                                setShow(true)
-                            }}>
-                                <div className="icon-container">
-                                    <BsListTask />
+                            <div className="category-container" >
+                                <div className="category" >
+                                    <div className="icon-container">
+                                        <BsListTask />
+                                    </div>
+                                    <p className="text" >{item.title}</p>
                                 </div>
-                                <p className="text" >{item.title}</p>
+                                <div
+                                    className="EditBtn"
+                                    onClick={() => {
+                                        setSelected(item)
+                                        setShow(true)
+                                    }}>
+                                    <p>Edit</p>
+                                </div>
+                                <div onClick={() => alert("Hi")}>
+                                    <TiDeleteOutline className="deleteIcon" />
+                                </div>
 
                             </div>
                         ))}
@@ -119,38 +131,25 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                                                 className="userUpdateInput"
                                             />
                                         </div> */}
- 
-                                        <div className="userUpdateItem">
-                                            <label>Image</label>
-                                            <MultiImageInput
-                                                    images={imagePath}
-                                                    setImages={setImagePath}
-                                                    max={1}
-                                                    cropConfig={{ crop, ruleOfThirds: true }}
 
-                                                />
-                                                
-                                        </div>
+                                       
                                     </div>
                                     <div className="userUpdateRight">
-                                        <div className="userUpdateUpload">
+                                        {/* <div className="userUpdateUpload">
                                             <img
                                                 className="userUpdateImg"
                                                 src={selected.img}
                                                 alt=""
                                             />
-                                            {/* <label htmlFor="file">
-                                                <Publish className="userUpdateIcon" />
-                                            </label>
-                                            <input type="file" id="file" style={{ display: "none" }} /> */}
-                                        </div>
+                                         
+                                        </div> */}
                                         <button className="userUpdateButton">Update</button>
 
                                     </div>
                                 </>
                             ) : (
-                                <div style={{justifyContent:'center', alignItems:'center'}}>
-                                    <img src={image1} style={{width:300, height:300}}/>
+                                <div style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                    <img src={image1} style={{ width: 300, height: 300 }} />
                                     <label htmlFor="file">
                                         <h3>Select a Category to edit</h3>
                                     </label>

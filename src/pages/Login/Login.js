@@ -1,24 +1,51 @@
 import React from 'react';
+import { useState } from 'react';
+import { Link, useHistory } from "react-router-dom";
+import './login.css';
 
-export default function Login() {
+export default function Login({ show, setShow }) {
+    setShow(false);
+    const { innerWidth: width, innerHeight: height } = window;
+    const [loginData, setLoginData] = useState();
+    let history = useHistory();
+
     return (
-        <div>
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div className='container' style={{ marginLeft: width / 2 * 0.65, justifyContent: 'center', alignItems: 'center' }}>
+            <section>
+                <div class="color"></div>
+                <div class="color"></div>
+                {/* <div class="color"></div> */}
+                <div className='box'>
+                    <div className='containerr' style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <div className='form' >
+                            <h2>Login Form</h2>
+                            <form>
+                                <div className='inputBox'>
+                                    <input type="email" placeholder="Enter Email" required />
+                                </div>
+                                <div className='inputBox'>
+                                    <input type="password" placeholder="Enter Password" required />
+                                </div>
+                              
+                                    <div className='inputBox'>
+                                        <input type="submit" value="Login" onClick={(e) => {
+                                            if (e.keyCode === 13) {
+                                                alert("error")
+                                                e.preventDefault();
+                                            } else {
+                                                
+                                                setShow(true);
+                                                history.push("/home");
+                                            }
+                                        }
+                                        } />
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+
+            </section>
         </div>
     );
 }
