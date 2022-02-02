@@ -67,6 +67,7 @@ export default function UserList() {
 
   return (
     <div className="UserList">
+      <h1 className="userTitle" style={{textAlign:'center', margin:5}}>Users</h1>
       <DataGrid
         rows={data}
         disableSelectionOnClick

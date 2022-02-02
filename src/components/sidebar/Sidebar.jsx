@@ -71,11 +71,9 @@ export default function Sidebar({ image, collapsed, toggled, handleToggleSidebar
                     <Menu iconShape="circle">
 
                         <MenuItem icon={<BsListTask />} style={{color:'#BEBEC2', textDecoration:'none'}}> {intl.formatMessage({ id: 'Categories' })}</MenuItem>
-
-
                     </Menu>
                 </Link>
-                <Link to="/products">
+                <Link to="/users">
                     <Menu iconShape="circle">
 
                         <MenuItem icon={<FaUserShield />} style={{color:'#BEBEC2', textDecoration:'none'}}> {intl.formatMessage({ id: 'Users' })}</MenuItem>
@@ -93,17 +91,14 @@ export default function Sidebar({ image, collapsed, toggled, handleToggleSidebar
                         padding: '20px 24px',
                     }}
                 >
-                    <a
-                        href="https://github.com/azouaoui-med/react-pro-sidebar"
-                        target="_blank"
-                        className="sidebar-btn"
-                        rel="noopener noreferrer"
-                    >
-                        <FaGithub />
-                        <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                            {intl.formatMessage({ id: 'viewSource' })}
-                        </span>
-                    </a>
+                   <Link to="/login">
+                    <Menu iconShape="circle">
+
+                        <MenuItem icon={<FaUserShield />} style={{color:'#BEBEC2', textDecoration:'none'}}> {intl.formatMessage({ id: 'Logout' })}</MenuItem>
+
+
+                    </Menu>
+                </Link>
                 </div>
             </SidebarFooter>
         </ProSidebar >

@@ -9,10 +9,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newCategory/NewCategory";
-import ProductList from "./pages/userList/UserList";
 import Product from "./pages/product/Product";
+import Login from "./pages/Login/Login";
 import NewProduct from "./pages/newProduct/NewProduct";
-import './styles/app.scss'
+import './styles/app.scss';
 
 function App() {
   const [locale, setLocale] = useState('en');
@@ -62,8 +62,9 @@ function App() {
               handleImageChange={handleImageChange}/>
             </Route>
           
-            <Route exact path="/products">
-              <ProductList toggled={toggled}
+            <Route exact path="/users">
+              <UserList 
+                toggled={toggled}
                 collapsed={collapsed}
                 rtl={rtl}
                 handleToggleSidebar={handleToggleSidebar}
@@ -71,11 +72,9 @@ function App() {
                 handleRtlChange={handleRtlChange}
                 handleImageChange={handleImageChange}/>
             </Route>
-            <Route path="/product/:productId">
-              <Product />
-            </Route>
-            <Route path="/newproduct">
-              <NewProduct />
+          
+            <Route path="/login">
+              <Login />
             </Route>
           </Switch>
         </div>
