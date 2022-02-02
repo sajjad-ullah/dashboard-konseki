@@ -1,0 +1,97 @@
+.userList {
+  flex: 4;
+}
+
+.userContainer{
+  flex-direction: row;
+}
+
+.userShowTop{
+  flex-direction: column;
+}
+
+.userShow{
+  width: 50%;
+}
+
+.userListUser {
+  display: flex;
+  align-items: center;
+}
+
+.userListImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.btn-toggle {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  background: #353535;
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  
+}
+
+.category-container{
+  padding: 10px;
+  margin: 15px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 2px 6px 15px 3px rgb(219, 219, 219);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.category-container:hover {
+  opacity: 0.9;
+  background-color: rgb(226, 229, 229);
+}
+.icon-container{
+ 
+  border-radius: 50px;
+  font-size: 12px;
+  color:grey;
+  margin:10;
+  font-size: large;
+}
+
+.text{
+  margin-top: -2px;
+  margin-left: 10px;
+  color: #3e3e3f;
+  font-weight: bold;
+}
+
+.userListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.userListDelete{
+    color: red;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .btn-toggle {
+    display: flex;
+  }
+
+}
