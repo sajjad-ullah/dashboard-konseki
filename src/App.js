@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import { IntlProvider } from 'react-intl';
+import Sidebar from "./components/sidebar/Sidebar";
 import messages from './messages';
 import "./App.css";
 import Home from "./pages/Categories/index";
@@ -68,6 +68,8 @@ function App() {
 
             <Route exact path="/home">
               <Home
+               show={show}
+               setShow={setShow}
                 toggled={toggled}
                 collapsed={collapsed}
                 rtl={rtl}

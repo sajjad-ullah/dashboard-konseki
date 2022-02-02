@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./sidebar.css";
 import { Link } from "react-router-dom";
 import { useIntl } from 'react-intl';
@@ -17,16 +17,18 @@ import { BsListTask } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { BiLogOut, BiMenuAltLeft } from 'react-icons/bi';
 import { AiOutlineDollarCircle } from 'react-icons/ai';
-
-import sidebarBg from '../../assests/bg1.jpg';
-
+import sidebarBg from '../../assests/bg3.jpg';
 import '../../styles/app.scss';
-
 
 export default function Sidebar({ image, collapsed, toggled, handleToggleSidebar, handleCollapsedChange, setCollapsed }) {
 
     const intl = useIntl();
     const { innerWidth: width, innerHeight: height } = window;
+    useEffect(() => {
+
+        const { innerWidth: width, innerHeight: height } = window;
+    }, []);
+    
     return (
         <ProSidebar
             image={image ? sidebarBg : false}
@@ -34,7 +36,7 @@ export default function Sidebar({ image, collapsed, toggled, handleToggleSidebar
             toggled={toggled}
             breakPoint="md"
             onToggle={handleToggleSidebar}
-            style={{ height: height  }}
+            style={{ height: height }}
         >
             <SidebarHeader>
                 <div

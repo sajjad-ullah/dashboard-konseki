@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     CalendarToday,
     LocationSearching,
@@ -13,36 +13,56 @@ import "./style.css";
 import { FaBars } from 'react-icons/fa'
 import { BsListTask } from 'react-icons/bs'
 import { TiDeleteOutline } from 'react-icons/ti';
-
 import MultiImageInput from 'react-multiple-image-input';
-import image1 from '../../assests/illustration1.png'
+import image1 from '../../assests/illustration1.png';
+import axios from 'axios';
 
-export default function Categories({ image, collapsed, rtl, toggled, handleToggleSidebar }) {
+export default function Categories({ setShow, image, collapsed, rtl, toggled, handleToggleSidebar }) {
+    setShow(true);
     const [selected, setSelected] = useState(null);
-    const [show, setShow] = useState(false);
-    const [categories, setCategories] = useState([
-        {
-            id: 1,
-            title: "Cat1",
-            img: image1
-        },
-        {
-            id: 2,
-            title: "Cat2",
-            img: image1
-        },
-        {
-            id: 3,
-            title: "Cat3",
-            img: image1
-        },
-        {
-            id: 4,
-            title: 'Cat4',
-            img: image1
-        }
-    ]);
+    const [visible, setVisible] = useState(false);
+    // const [categories, setCategories] = useState([
+    //     {
+    //         id: 1,
+    //         title: "Cat1",
+    //         img: image1
+    //     },
+    //     {
+    //         id: 2,
+    //         title: "Cat2",
+    //         img: image1
+    //     },
+    //     {
+    //         id: 3,
+    //         title: "Cat3",
+    //         img: image1
+    //     },
+    //     {
+    //         id: 4,
+    //         title: 'Cat4',
+    //         img: image1
+    //     }
+    // ]);
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+
+        axios.get('https://api-kearekisa.herokuapp.com/admin/category')
+            .then(res => {
+                const cat = res.data;
+                console.log(cat.categories)
+                // console.log(typeof(cat))
+
+                setCategories(cat.categories)
+                console.log("categories", categories)
+            })
+            .catch(err => {
+                alert(err);
+            })
+    }, []);
     const [imagePath, setImagePath] = useState([]);
+    const { innerWidth: width, innerHeight: height } = window;
 
     const crop = {
         unit: '%',
@@ -77,8 +97,8 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                 </Link>
             </div>
             <div className="userContainer">
-                <div className="userShow">
-                    <div className="userShowTop">
+                <div className="userShow" style={{ height: height*0.7, overflowY: 'scroll', width:'100%'}}>
+                    <div className="userShowTop" >
                         <h3>All Categories</h3>
                         {categories.map((item, key) => (
 
@@ -87,14 +107,16 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                                     <div className="icon-container">
                                         <BsListTask />
                                     </div>
-                                    <p className="text" >{item.title}</p>
+                                    <p className="text" >{item.name}</p>
                                 </div>
                                 <div
                                     className="EditBtn"
                                     onClick={() => {
                                         setSelected(item)
-                                        setShow(true)
-                                    }}>
+                                        setVisible(true)
+                                    }}
+                                    
+                                    style={{justifyContent:'flex-end'}}>
                                     <p>Edit</p>
                                 </div>
                                 <div onClick={() => alert("Hi")}>
@@ -110,7 +132,7 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                     <span className="userUpdateTitle">Edit</span>
                     <form className="userUpdateForm">
 
-                        {show ?
+                        {visible ?
                             (
                                 <>
                                     <div className="userUpdateLeft">
@@ -120,7 +142,7 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                                                 type="text"
                                                 placeholder="annabeck99"
                                                 className="userUpdateInput"
-                                                value={selected.title}
+                                                value={selected.name}
                                             />
                                         </div>
                                         {/* <div className="userUpdateItem">
@@ -132,7 +154,7 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                                             />
                                         </div> */}
 
-                                       
+
                                     </div>
                                     <div className="userUpdateRight">
                                         {/* <div className="userUpdateUpload">
@@ -151,7 +173,7 @@ export default function Categories({ image, collapsed, rtl, toggled, handleToggl
                                 <div style={{ justifyContent: 'center', alignItems: 'center' }}>
                                     <img src={image1} style={{ width: 300, height: 300 }} />
                                     <label htmlFor="file">
-                                        <h3>Select a Category to edit</h3>
+                                        <h3 style={{textAlign:'center'}}>Select a Category to edit</h3>
                                     </label>
                                 </div>
                             )}
