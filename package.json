@@ -18,7 +18,7 @@
     "react-multiple-image-input": "^1.0.0",
     "react-pro-sidebar": "^0.7.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "react-switch": "^6.0.0",
     "recharts": "^2.0.9",
     "sass": "^1.49.4",
