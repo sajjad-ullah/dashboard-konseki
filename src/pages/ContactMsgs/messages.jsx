@@ -20,11 +20,8 @@ export default function UserList({ handleToggleSidebar }) {
         axios.get('https://api-kearekisa.herokuapp.com/admin/contactmessage')
           .then(res => {
             const cat = res.data;
-            console.log(cat[0])
-    
             const userData = cat.map((item) => {
               item.id = item._id;
-              console.log("item:", item)
               return {
                 ...item
               }

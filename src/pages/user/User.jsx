@@ -8,7 +8,7 @@ import {
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import "./user.css";
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaBars } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa'
 import '../../styles/app.scss';
 
 export default function User({ image, collapsed, rtl, toggled, handleToggleSidebar }) {
