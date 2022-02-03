@@ -6,7 +6,8 @@ import { FaUserShield, FaBars } from 'react-icons/fa';
 import { DeleteOutline } from "@material-ui/icons";
 import { messages } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function UserList({ handleToggleSidebar }) {
     const [data, setData] = useState(messages);
@@ -14,6 +15,28 @@ export default function UserList({ handleToggleSidebar }) {
     const handleDelete = (id) => {
         setData(data.filter((item) => item.id !== id));
     };
+    useEffect(() => {
+
+        axios.get('https://api-kearekisa.herokuapp.com/admin/contactmessage')
+          .then(res => {
+            const cat = res.data;
+            console.log(cat[0])
+    
+            const userData = cat.map((item) => {
+              item.id = item._id;
+              console.log("item:", item)
+              return {
+                ...item
+              }
+            })
+            // console.log("newData:", userData[0])
+            setData(userData)
+    
+          })
+          .catch(err => {
+            alert(err);
+          })
+      }, []);
 
     const columns = [
         {
@@ -49,7 +72,7 @@ export default function UserList({ handleToggleSidebar }) {
             renderCell: (params) => {
                 return (
                     <div className="UserListItem">
-                        {params.row.message}
+                        {params.row.messbody}
                     </div>
                 );
             },
