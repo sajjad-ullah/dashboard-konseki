@@ -47,7 +47,7 @@ export default function UserList({ handleToggleSidebar }) {
       renderCell: (params) => {
         return (
           <div className="UserListItem">
-            <img className="UserListImg" src={params.row.profileimg} alt="" />
+            {/* <img className="UserListImg" src={params.row.profileimg} alt="" /> */}
             {params.row.name}
           </div>
         );
@@ -100,6 +100,18 @@ export default function UserList({ handleToggleSidebar }) {
         return (
           <div className="UserListItem">
             {params.row.location}
+          </div>
+        );
+      },
+    },
+    {
+      field: "Premium",
+      headerName: "Premium",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="UserListItem">
+            {params.row.premium?"Yes":"No"}
           </div>
         );
       },

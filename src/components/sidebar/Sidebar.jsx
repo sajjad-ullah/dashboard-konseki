@@ -90,11 +90,11 @@ export default function Sidebar({ image, collapsed, toggled, handleToggleSidebar
                         <MenuItem icon={<FiMessageSquare style={{fontSize:20}}/>} style={{ color: '#BEBEC2', textDecoration: 'none' }}> {intl.formatMessage({ id: 'Contact Messages' })}</MenuItem>
                     </Menu>
                 </Link>
-                <Link to="/profile">
+                {/* <Link to="/profile">
                     <Menu iconShape="circle">
                         <MenuItem icon={<CgProfile style={{fontSize:20}}/>} style={{ color: '#BEBEC2', textDecoration: 'none' }}> {intl.formatMessage({ id: 'Profile' })}</MenuItem>
                     </Menu>
-                </Link>
+                </Link> */}
                 
 
             </SidebarContent>

@@ -63,13 +63,32 @@ export default function Categories({ setShow, image, collapsed, rtl, toggled, ha
     }, []);
     const [imagePath, setImagePath] = useState([]);
     const { innerWidth: width, innerHeight: height } = window;
-
+const [name,setname]=useState('');
     const crop = {
         unit: '%',
         aspect: 4 / 3,
         width: '100'
     };
-
+const updatecat=(a)=>{
+    var link='https://api-kearekisa.herokuapp.com/admin/category/'+a;
+axios.patch(link,{name:name}).then(
+    (data)=>{
+        window.location.reload(false);
+    }
+)
+}
+const delcat=(a)=>{
+    var link='https://api-kearekisa.herokuapp.com/admin/category/'+a;
+    console.log(a);
+    axios.delete(link).then(
+        (data)=>{
+            window.location.reload(false);
+        }
+    )
+}
+const check=(e)=>{
+     e.preventDefault();
+}
     return (
         <main>
 
@@ -114,13 +133,16 @@ export default function Categories({ setShow, image, collapsed, rtl, toggled, ha
                                     onClick={() => {
                                         setSelected(item)
                                         setVisible(true)
+                                        setname(item.name)
                                     }}
                                     
                                     style={{justifyContent:'flex-end'}}>
                                     <p>Edit</p>
                                 </div>
-                                <div onClick={() => alert("Hi")}>
-                                    <TiDeleteOutline className="deleteIcon" />
+                                <div >
+                                    <TiDeleteOutline className="deleteIcon"  onClick={()=>
+                                        delcat(item._id)
+                                }/>
                                 </div>
 
                             </div>
@@ -130,7 +152,7 @@ export default function Categories({ setShow, image, collapsed, rtl, toggled, ha
                 </div>
                 <div className="userUpdate">
                     <span className="userUpdateTitle">Edit</span>
-                    <form className="userUpdateForm">
+                    <form className="userUpdateForm" onSubmit={check}>
 
                         {visible ?
                             (
@@ -142,7 +164,8 @@ export default function Categories({ setShow, image, collapsed, rtl, toggled, ha
                                                 type="text"
                                                 placeholder="annabeck99"
                                                 className="userUpdateInput"
-                                                value={selected.name}
+                                                value={name}
+                                                onChange={(e)=>setname(e.target.value)}
                                             />
                                         </div>
                                         {/* <div className="userUpdateItem">
@@ -165,7 +188,7 @@ export default function Categories({ setShow, image, collapsed, rtl, toggled, ha
                                             />
                                          
                                         </div> */}
-                                        <button className="userUpdateButton">Update</button>
+                                        <button className="userUpdateButton" onClick={()=>{updatecat(selected._id)}}>Update</button>
 
                                     </div>
                                 </>
