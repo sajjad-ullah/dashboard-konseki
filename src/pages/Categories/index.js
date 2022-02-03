@@ -79,7 +79,7 @@ axios.patch(link,{name:name}).then(
 }
 const delcat=(a)=>{
     var link='https://api-kearekisa.herokuapp.com/admin/category/'+a;
-    console.log(a);
+    // console.log(a);
     axios.delete(link).then(
         (data)=>{
             window.location.reload(false);
